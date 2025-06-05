@@ -156,7 +156,7 @@ public_response$cinema_score <- factor(
   ordered = TRUE
 )
 
-combined_films <- merge(pixar_films, public_response, by.x = "film")
+combined_films <- merge(pixar_films_clean, public_response, by.x = "film")
 ```
     
 
@@ -174,6 +174,30 @@ d)  Choose one of the variables representing the public response and
 
     What do you notice when comparing the scores of the films in a
     series? Do you see any patterns?
+    
+```{r}
+plot_data <- combined_films %>%
+  filter(!is.na(series)) %>%
+  arrange(series, release_date)
+
+ggplot(
+  plot_data, 
+  aes(
+    x = series, 
+    y = rotten_tomatoes, 
+    fill = film)
+  ) +
+  geom_bar(
+    stat = "identity", 
+    position = position_dodge(width = 0.8)
+    ) +
+  labs(title = "Rotten Tomatoes score of Pixar Film Series",
+       x = "Film Series",
+       y = "Rotten Tomatoes Score",
+       fill = "Film Title") +
+  theme_minimal()
+```
+### So when you compare all the movies in a series, you can see that those are only good movies and the audience know it, well, most of the movies, i really do not know how cars 2 and also cars in general can be rated that badly, cleary they havent seen the movies but whatever
 
 ## Exercise 4: Open Analysis (4 points)
 
