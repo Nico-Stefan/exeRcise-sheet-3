@@ -226,9 +226,88 @@ e)  Use R to answer your chosen question. Please limit your analysis to
     the functions and techniques we have covered so far in the course.
     You are **not expected** to use advanced statistical models or
     external packages which haven't been introduced.
+    
+```{r}
+data <- read.csv("German road deaths and accidents - destatis.csv")
+
+ ggplot(data, aes(x = Year, y = Road.deaths)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road Fatalities in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+
+
+ ggplot(data, aes(x = Year, y = Road.injuries)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road injuries in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+
+
+ ggplot(data, aes(x = Year, y = Road.casualties)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road accidents in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+
+
+
+
+data$death_rate <- data$Road.deaths / data$Accidents.reported.to.police * 100000
+
+data$injury_rate <- data$Road.injuries / data$Accidents.reported.to.police * 100000
+
+data$incident_rate <- data$Road.casualties / data$Accidents.reported.to.police * 100000
+
+model <- lm(Road.deaths ~ Year, data = data)
+
+
+
+```
+    
+```{r}
+ggplot(data, aes(x = Year, y = death_rate)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road injuries in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+
+ggplot(data, aes(x = Year, y = injury_rate)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road injuries in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+
+ggplot(data, aes(x = Year, y = incident_rate)) +
+  geom_line(color = "red") +
+  geom_point(color = "black") +
+  labs(title = "Road injuries in Germany Over Time",
+       x = "Year",
+       y = "Number of incidents") +
+  theme_minimal()
+```
+    
+    
+    
 f)  Create a meaningful plot / figure with the dataset. Make sure to
     provide a figure caption (via the chunk options / Rmarkdown) and
     correctly label the figure.
+    
+    
+```{r}
+ggplot()
+```
+    
 
 ## Final Note
 
