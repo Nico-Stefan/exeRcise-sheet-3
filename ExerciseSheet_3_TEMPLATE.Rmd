@@ -272,26 +272,26 @@ model <- lm(Road.deaths ~ Year, data = data)
 ```
     
 ```{r}
-ggplot(data, aes(x = Year, y = death_rate)) +
+plot1 <- ggplot(data, aes(x = Year, y = death_rate)) +
   geom_line(color = "red") +
   geom_point(color = "black") +
-  labs(title = "Road injuries in Germany Over Time",
+  labs(title = "Deaths over time",
        x = "Year",
        y = "Number of incidents") +
   theme_minimal()
 
-ggplot(data, aes(x = Year, y = injury_rate)) +
+plot2 <- ggplot(data, aes(x = Year, y = injury_rate)) +
   geom_line(color = "red") +
   geom_point(color = "black") +
-  labs(title = "Road injuries in Germany Over Time",
+  labs(title = "Injuries over time",
        x = "Year",
        y = "Number of incidents") +
   theme_minimal()
 
-ggplot(data, aes(x = Year, y = incident_rate)) +
+plot3 <- ggplot(data, aes(x = Year, y = incident_rate)) +
   geom_line(color = "red") +
   geom_point(color = "black") +
-  labs(title = "Road injuries in Germany Over Time",
+  labs(title = "Incidents over time",
        x = "Year",
        y = "Number of incidents") +
   theme_minimal()
@@ -305,9 +305,13 @@ f)  Create a meaningful plot / figure with the dataset. Make sure to
     
     
 ```{r}
-ggplot()
+library(patchwork)
+
+plot1 + plot2 + plot3
 ```
-    
+
+###So even though there are less deaths and incidents back in the day, compared to the rate of overall incidents and fatal/harmful there is an obvious drop to the bottom, which means cars nowadays are way safer to drive then 80 years ago
+
 
 ## Final Note
 
